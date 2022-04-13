@@ -4,7 +4,7 @@ const Context = createContext();
 
 const ContextProvider = (props) => { 
 
-  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('antroUser')));
   const [toggleAccess, setToggleAccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [savingPost, setSavingPost] = useState(false);

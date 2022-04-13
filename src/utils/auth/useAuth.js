@@ -29,8 +29,8 @@ const useAuth = () => {
       const res = await response.json();
       if (res.success) {
         const user = res.payload;
-        localStorage.setItem('user', JSON.stringify(user));
-        setCurrentUser(JSON.parse(localStorage.getItem('user')));
+        localStorage.setItem('antroUser', JSON.stringify(user));
+        setCurrentUser(JSON.parse(localStorage.getItem('antroUser')));
         return user;
       } else {
         console.log(res.message, 'Error: ', res.error);
@@ -58,7 +58,7 @@ const useAuth = () => {
       const response = await fetch(LOGOUT_URL, options)
       const res = await response.json();
       if (res.success) {
-        localStorage.removeItem('user');
+        localStorage.removeItem('antroUser');
         setCurrentUser(null);
         return res.success;
       }
@@ -102,8 +102,8 @@ const useAuth = () => {
           const resLogin = await login(loginOptions);
           if (resLogin.success) {
             const { userLogged } = resLogin.payload;
-            localStorage.setItem('user', JSON.stringify(userLogged));
-            setCurrentUser(localStorage.getItem('user'));
+            localStorage.setItem('antroUser', JSON.stringify(userLogged));
+            setCurrentUser(localStorage.getItem('antroUser'));
             return userLogged;
           } else {
             console.log(res.message, 'Error: ', res.error);

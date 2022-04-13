@@ -30,8 +30,8 @@ const useUserFetch = () => {
       const res = await response.json();
       if (res.success) {
         const user = res.payload;
-        localStorage.setItem('user', JSON.stringify(user));
-        setCurrentUser(JSON.parse(localStorage.getItem('user')));
+        localStorage.setItem('antroUser', JSON.stringify(user));
+        setCurrentUser(JSON.parse(localStorage.getItem('antroUser')));
         return user;
       } else {
         console.log(res.message, 'Error: ', res.error);
@@ -153,8 +153,6 @@ const useUserFetch = () => {
       return false;
     }
   };
-
-// Seguir aquí. (elimina friends)
 
   return { changeSettings, getUserProfile, 
     fetchUserFeed, addFriends, acceptFriend };
