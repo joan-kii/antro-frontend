@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/static/js/main.1621c1bc.js",
-    "static/media/Quenell-x95-my-heart.mp3": "/static/media/Quenell-x95-my-heart.55e909da7a9f68d00696.mp3",
-    "static/media/BeCorbal-for-me.mp3": "/static/media/BeCorbal-for-me.507cf5fbceebb0396100.mp3",
-    "static/media/Gvidon-mesmerizing.mp3": "/static/media/Gvidon-mesmerizing.2771000611e998835e76.mp3",
-    "static/media/play-button.svg": "/static/media/play-button.f51d3dcc5dd954264592ae123010f843.svg",
-    "static/media/prev-button.svg": "/static/media/prev-button.b7fb70f17cdd94e3692ec11493200079.svg",
-    "static/media/next-button.svg": "/static/media/next-button.e4f8671a8ede5176d91bb1f0f9f4e5fb.svg",
-    "static/media/heart.svg": "/static/media/heart.e5ce1cae545200667206ec8b6f01d986.svg",
-    "static/media/pause-button.svg": "/static/media/pause-button.75e8209d738c330a9f48a0ac98096e8f.svg",
-    "index.html": "/index.html",
-    "main.1621c1bc.js.map": "/static/js/main.1621c1bc.js.map"
+    "main.js": "/antro-frontend/static/js/main.ce794966.js",
+    "static/media/Quenell-x95-my-heart.mp3": "/antro-frontend/static/media/Quenell-x95-my-heart.55e909da7a9f68d00696.mp3",
+    "static/media/BeCorbal-for-me.mp3": "/antro-frontend/static/media/BeCorbal-for-me.507cf5fbceebb0396100.mp3",
+    "static/media/Gvidon-mesmerizing.mp3": "/antro-frontend/static/media/Gvidon-mesmerizing.2771000611e998835e76.mp3",
+    "static/media/play-button.svg": "/antro-frontend/static/media/play-button.f51d3dcc5dd954264592ae123010f843.svg",
+    "static/media/prev-button.svg": "/antro-frontend/static/media/prev-button.b7fb70f17cdd94e3692ec11493200079.svg",
+    "static/media/next-button.svg": "/antro-frontend/static/media/next-button.e4f8671a8ede5176d91bb1f0f9f4e5fb.svg",
+    "static/media/heart.svg": "/antro-frontend/static/media/heart.e5ce1cae545200667206ec8b6f01d986.svg",
+    "static/media/pause-button.svg": "/antro-frontend/static/media/pause-button.75e8209d738c330a9f48a0ac98096e8f.svg",
+    "index.html": "/antro-frontend/index.html",
+    "main.ce794966.js.map": "/antro-frontend/static/js/main.ce794966.js.map"
   },
   "entrypoints": [
-    "static/js/main.1621c1bc.js"
+    "static/js/main.ce794966.js"
   ]
 }
