@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://joan-kii.github.io/",
+  "homepage": "https://joan-kii.github.io/antro-frontend",
   "dependencies": {
     "@hookform/error-message": "^2.0.0",
     "@react-three/drei": "^8.11.0",
