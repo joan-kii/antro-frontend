@@ -16,12 +16,9 @@ const AccessPage = () => {
   const [isServerReady, setIsServerReady] = useState(false);
 
   useEffect(() => {
-    const callServer = async () => {
-      const ready = await wakeupServer();
-      setIsServerReady(ready);
-    };
+    wakeupServer();
+    setTimeout(setIsServerReady(true), 5000);
 
-    callServer();
     //eslint-disable-next-line
   }, [])
 
