@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AccessPageStyled, AccessForms } from './AccessPage.styled';
 import { LoginForm } from '../LoginForm/LoginForm';
 import { SignupForm } from '../SignupForm/SignupForm';
-import { Context, useAuth } from '@utils';
+import { Context, useUserFetch } from '@utils';
 import { CustomLink, BackgroundScene, NoticeComponent } from '@components';
 
 
@@ -12,12 +12,15 @@ const AccessPage = () => {
 
   const { toggleAccess, currentUser } = useContext(Context);
   const navigate  = useNavigate();
-  const { wakeupServer } = useAuth();
+  const { wakeupServer }  = useUserFetch();
   const [isServerReady, setIsServerReady] = useState(false);
 
   useEffect(() => {
     wakeupServer();
-    setTimeout(setIsServerReady(true), 5000);
+    const go = () => {
+      setIsServerReady(true);
+    };
+    const wakingup = setTimeout(go, 5000);
 
     //eslint-disable-next-line
   }, [])
@@ -32,7 +35,7 @@ const AccessPage = () => {
       <BackgroundScene />  {/* comment this before running tests */}
       <AccessForms>
         <h1>Welcome to Antro</h1> 
-        {!isServerReady && <NoticeComponent text='Waking up...'/>}
+        {!isServerReady && <NoticeComponent text='Wait, waking up...'/>}
         {toggleAccess ? <SignupForm /> : <LoginForm />}
         <div 
           style={{
