@@ -26,10 +26,7 @@ const AccessPage = () => {
   }, [])
 
   useEffect(() => {
-    if (currentUser) {
-      setIsServerReady(true);
-      navigate('/');
-    }
+    if (currentUser) navigate('/');
     //eslint-disable-next-line
   }, [currentUser])
 
@@ -41,11 +38,11 @@ const AccessPage = () => {
         {!isServerReady && <NoticeComponent text='Waking up...'/>}
         {toggleAccess ? <SignupForm /> : <LoginForm />}
         <div 
-        style={{
-          'display': 'flex', 
-          'flexDirection': 'column', 
-          'marginTop': '1em'
-          }}>
+          style={{
+            'display': 'flex', 
+            'flexDirection': 'column', 
+            'marginTop': '1em'
+            }}>
           <p>{!toggleAccess ? "Don't have an account?" : 'Already registered?'}</p>
           <CustomLink  
             text={!toggleAccess ? 'Create Account' : 'Login'} />
