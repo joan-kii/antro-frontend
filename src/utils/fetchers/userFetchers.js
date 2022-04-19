@@ -9,153 +9,180 @@ const useUserFetch = () => {
     const FEED_URL = process.env.REACT_APP_API_USER_FEED;
     const FRIEND_REQUEST_URL = process.env.REACT_APP_API_FRIEND_REQUEST;
     const ACCEPT_FRIEND_URL = process.env.REACT_APP_API_ACCEPT_FRIEND;
+    const WAKEUP_SERVER_URL = process.env.REACT_APP_API_WAKEUP_PATH;
 
     const { setCurrentUser } = useContext(Context);
+
+    // Wake up server
+    const wakeupServer = async () => {
+    
+      const options = {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        mode: 'cors'
+      };
+
+      try {
+        const response = await fetch(WAKEUP_SERVER_URL, options);
+        const res = await response.json();
+        if (res.success) {
+          return res.success;
+        } else {
+          console.log(res.message, 'Error: ', res.error);
+          return null;
+        }
+      } catch(err) {
+        console.log('Unfulfilled Request', err);
+        return null;
+      }
+    };
 
     // Post User Settings
     const changeSettings = async (data) => {
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers:{
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      mode: 'cors'
-    };
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        mode: 'cors'
+      };
 
-    try {
-      const response = await fetch(SETTINGS_URL, options);
-      const res = await response.json();
-      if (res.success) {
-        const user = res.payload;
-        localStorage.setItem('antroUser', JSON.stringify(user));
-        setCurrentUser(JSON.parse(localStorage.getItem('antroUser')));
-        return user;
-      } else {
-        console.log(res.message, 'Error: ', res.error);
+      try {
+        const response = await fetch(SETTINGS_URL, options);
+        const res = await response.json();
+        if (res.success) {
+          const user = res.payload;
+          localStorage.setItem('antroUser', JSON.stringify(user));
+          setCurrentUser(JSON.parse(localStorage.getItem('antroUser')));
+          return user;
+        } else {
+          console.log(res.message, 'Error: ', res.error);
+          return null;
+        }
+      } catch(err) {
+        console.log('Unfulfilled Request', err);
         return null;
       }
-    } catch(err) {
-      console.log('Unfulfilled Request', err);
-      return null;
-    }
-  };
-
-
-  // Get User Profile
-  const getUserProfile = async (username) => {
-
-    const options = {
-      method: 'GET',
-      headers:{
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      mode: 'cors'
     };
-    
-    try {
-      const response = await fetch(PROFILE_URL + '/' + username, options);
-      const res = await response.json();
-      if (res.success) {
-        return { profile: res.payload };
-      } else {
-        console.log(res.message, 'Error: ', res.error);
+
+
+    // Get User Profile
+    const getUserProfile = async (username) => {
+
+      const options = {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        mode: 'cors'
+      };
+      
+      try {
+        const response = await fetch(PROFILE_URL + '/' + username, options);
+        const res = await response.json();
+        if (res.success) {
+          return { profile: res.payload };
+        } else {
+          console.log(res.message, 'Error: ', res.error);
+          return null;
+        }
+      } catch(err) {
+        console.log('Unfulfilled Request', err);
         return null;
       }
-    } catch(err) {
-      console.log('Unfulfilled Request', err);
-      return null;
-    }
-  };
-
-  // Fetch User Feed
-  const fetchUserFeed = async (userId) => {
-
-    const options = {
-      method: 'GET',
-      headers:{
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      mode: 'cors'
     };
-    
-    try {
-      const response = await fetch(FEED_URL + userId, options);
-      const res = await response.json();
-      if (res.success) {
-        return res.payload;
-      } else {
-        console.log(res.message, 'Error: ', res.error);
+
+    // Fetch User Feed
+    const fetchUserFeed = async (userId) => {
+
+      const options = {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        mode: 'cors'
+      };
+      
+      try {
+        const response = await fetch(FEED_URL + userId, options);
+        const res = await response.json();
+        if (res.success) {
+          return res.payload;
+        } else {
+          console.log(res.message, 'Error: ', res.error);
+          return null;
+        }
+      } catch(err) {
+        console.log('Unfulfilled Request', err);
         return null;
       }
-    } catch(err) {
-      console.log('Unfulfilled Request', err);
-      return null;
-    }
-  };
-
-  // Request Friend
-  const addFriends = async (friendship) => {
-
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(friendship),
-      headers:{
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      mode: 'cors'
     };
 
-    try {
-      const response = await fetch(FRIEND_REQUEST_URL, options);
-      const res = await response.json();
-      if (res.success) {
-        return res.success;
-      } else {
-        console.log(res.message, 'Error: ', res.error);
+    // Request Friend
+    const addFriends = async (friendship) => {
+
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(friendship),
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        mode: 'cors'
+      };
+
+      try {
+        const response = await fetch(FRIEND_REQUEST_URL, options);
+        const res = await response.json();
+        if (res.success) {
+          return res.success;
+        } else {
+          console.log(res.message, 'Error: ', res.error);
+          return false;
+        }
+      } catch(err) {
+        console.log('Unfulfilled Request', err);
         return false;
       }
-    } catch(err) {
-      console.log('Unfulfilled Request', err);
-      return false;
-    }
-  };
-
-  const acceptFriend = async (userId, friendId) => {
-    const data = {userId, friendId};
-
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers:{
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      mode: 'cors'
     };
 
-    try {
-      const response = await fetch(ACCEPT_FRIEND_URL, options);
-      const res = await response.json();
-      if (res.success) {
-        return res.success;
-      } else {
-        console.log(res.message, 'Error: ', res.error);
+    const acceptFriend = async (userId, friendId) => {
+      const data = {userId, friendId};
+
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        mode: 'cors'
+      };
+
+      try {
+        const response = await fetch(ACCEPT_FRIEND_URL, options);
+        const res = await response.json();
+        if (res.success) {
+          return res.success;
+        } else {
+          console.log(res.message, 'Error: ', res.error);
+          return false;
+        }
+      } catch(err) {
+        console.log('Unfulfilled Request', err);
         return false;
       }
-    } catch(err) {
-      console.log('Unfulfilled Request', err);
-      return false;
-    }
-  };
+    };
 
-  return { changeSettings, getUserProfile, 
-    fetchUserFeed, addFriends, acceptFriend };
+    return { changeSettings, getUserProfile, 
+      fetchUserFeed, addFriends, acceptFriend, wakeupServer };
 
 };
 
