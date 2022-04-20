@@ -17,7 +17,7 @@ const AccessPage = () => {
 
   useEffect(() => {
     const wakingup = async () => {
-      const awake = wakeupServer();
+      const awake = await wakeupServer();
       setIsServerReady(awake);
     };
     
@@ -33,22 +33,24 @@ const AccessPage = () => {
   return (
     <AccessPageStyled>
       <BackgroundScene />  {/* comment this before running tests */}
-      {isServerReady ? 
         <AccessForms>
           <h1>Welcome to Antro</h1> 
-          {toggleAccess ? <SignupForm /> : <LoginForm />}
-          <div 
-            style={{
-              'display': 'flex', 
-              'flexDirection': 'column', 
-              'marginTop': '1em'
-              }}>
-            <p>{!toggleAccess ? "Don't have an account?" : 'Already registered?'}</p>
-            <CustomLink  
-              text={!toggleAccess ? 'Create Account' : 'Login'} />
-          </div>
-        </AccessForms> :
-        <NoticeComponent text='Wait, waking up...'/>}
+          {isServerReady ? 
+          <>
+            {toggleAccess ? <SignupForm /> : <LoginForm />}
+            <div 
+              style={{
+                'display': 'flex', 
+                'flexDirection': 'column', 
+                'marginTop': '1em'
+                }}>
+              <p>{!toggleAccess ? "Don't have an account?" : 'Already registered?'}</p>
+              <CustomLink  
+                text={!toggleAccess ? 'Create Account' : 'Login'} />
+            </div>
+          </> :
+          <NoticeComponent text='Wait, waking up...'/>}
+        </AccessForms> 
     </AccessPageStyled>
   )
 }
