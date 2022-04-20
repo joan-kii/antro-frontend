@@ -16,12 +16,12 @@ const AccessPage = () => {
   const [isServerReady, setIsServerReady] = useState(false);
 
   useEffect(() => {
-    wakeupServer();
-    const go = () => {
-      setIsServerReady(true);
+    const wakingup = async () => {
+      const awake = wakeupServer();
+      setIsServerReady(awake);
     };
-    const wakingup = setTimeout(go, 5000);
-
+    
+    wakingup();
     //eslint-disable-next-line
   }, [])
 
@@ -33,21 +33,22 @@ const AccessPage = () => {
   return (
     <AccessPageStyled>
       <BackgroundScene />  {/* comment this before running tests */}
-      <AccessForms>
-        <h1>Welcome to Antro</h1> 
-        {!isServerReady && <NoticeComponent text='Wait, waking up...'/>}
-        {toggleAccess ? <SignupForm /> : <LoginForm />}
-        <div 
-          style={{
-            'display': 'flex', 
-            'flexDirection': 'column', 
-            'marginTop': '1em'
-            }}>
-          <p>{!toggleAccess ? "Don't have an account?" : 'Already registered?'}</p>
-          <CustomLink  
-            text={!toggleAccess ? 'Create Account' : 'Login'} />
-        </div>
-      </AccessForms>
+      {isServerReady ? 
+        <AccessForms>
+          <h1>Welcome to Antro</h1> 
+          {toggleAccess ? <SignupForm /> : <LoginForm />}
+          <div 
+            style={{
+              'display': 'flex', 
+              'flexDirection': 'column', 
+              'marginTop': '1em'
+              }}>
+            <p>{!toggleAccess ? "Don't have an account?" : 'Already registered?'}</p>
+            <CustomLink  
+              text={!toggleAccess ? 'Create Account' : 'Login'} />
+          </div>
+        </AccessForms> :
+        <NoticeComponent text='Wait, waking up...'/>}
     </AccessPageStyled>
   )
 }
